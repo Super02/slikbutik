@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:13.4-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: dst
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dst
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"

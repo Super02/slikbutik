@@ -1,0 +1,43 @@
+{
+   "name": "slikbutik",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "dev": "nodemon src/server.ts --delay 500",
+      "devcss": "postcss src/public/styles/tailwind.css -o src/public/styles/style.css -w",
+      "typeorm": "typeorm-ts-node-commonjs"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Super02/slikbutik.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/Super02/slikbutik/issues"
+   },
+   "homepage": "https://github.com/Super02/slikbutik#readme",
+   "dependencies": {
+      "argon2": "^0.30.3",
+      "body-parser": "^1.20.2",
+      "ejs": "^3.1.9",
+      "express": "^4.18.2",
+      "express-session": "^1.17.3",
+      "nodemon": "^2.0.22",
+      "pg": "^8.4.0",
+      "postcss": "^8.4.22",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "^0.3.15"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.17",
+      "@types/node": "^16.11.10",
+      "autoprefixer": "^10.4.14",
+      "daisyui": "^2.51.5",
+      "postcss-cli": "^10.1.0",
+      "tailwindcss": "^3.3.1",
+      "ts-node": "^10.7.0",
+      "typescript": "^4.5.2"
+   }
+}
