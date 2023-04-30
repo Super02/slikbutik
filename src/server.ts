@@ -1,15 +1,16 @@
 // We are going to use the MVC model to structure our application
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-
+console.log(process.env.DATABASE_URL);
 import express, { Express, Request, Response } from 'express';
-import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import { User } from "./models/user"
+import { db } from './database';
 import "reflect-metadata"
 import * as argon2 from "argon2";
 
 var bodyParser = require('body-parser')
 var session = require('express-session');
-const connectionManager = require('typeorm').getConnectionManager();
 const app: Express = express();
 const port = 3000;
 var profile_img = "https://cdn.onlinewebfonts.com/svg/img_264570.png";
@@ -26,39 +27,22 @@ app.get('/', (req: Request, res: Response) => {
     res.render('pages/index', { profile_img: profile_img });
 });
 
-app.post('/login', (req: Request, res: Response) => {
-    connectionManager.get("default").query("SELECT * FROM users WHERE username = $1", [req.body.username]).then((result) => {
-        // Check password
-        if (result.length > 0) {
-            argon2.verify(result[0].password, req.body.password).then((match) => {
-                if (match) {
-                    session.user = result[0];
-                    res.render('pages/products', { User: User });
-                } else {
-                    res.render('pages/login', { error: "Invalid credentials", profile_img: profile_img});
-                }
-            });
+app.post('/login', async (req: Request, res: Response) => {
+    const user = await db.getRepository(User).findOne({ where: [{username: req.body.username }] });
+    if (user) {
+        if (await argon2.verify(user.password, req.body.password)) {
+            session.user = user;
+            res.redirect('/profile');
+        } else {
+            res.render('pages/login', { error: "Incorrect password", profile_img: profile_img });
         }
-    });
+    } else {
+        res.render('pages/login', { error: "Username does not exist", profile_img: profile_img });
+    }
 });
 
 app.post('/register', async (req: Request, res: Response) => {
-    // Get password
-    let password = req.body.password;
-    // Hash password
-    const hashedPassword = await argon2.hash(password);
-    // Create user
-    let user = new User();
-    user.username = req.body.username;
-    user.password = hashedPassword;
-
-    // Save user
-    connectionManager.get("default").manager.save(user).then((user) => {
-        res.render('pages/login', { profile_img: profile_img });
-    }).catch((error) => {
-        res.render('pages/register', { error: "Username already exists", profile_img: profile_img });
-    });
-    res.render('pages/register', { profile_img: profile_img });
+    return 200;
 });
 
 app.get('/login', (req: Request, res: Response) => {
