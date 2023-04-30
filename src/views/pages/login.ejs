@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="/styles/style.css">
+<link rel="stylesheet" href="/styles/style.css">
+
 <head>
-  <%- include('../partials/head', {profile_img: profile_img}); %>
+    <%- include('../partials/head', {profile_img: profile_img}); %>
 </head>
 
 <header>
-  <%- include('../partials/header'); %>
+    <%- include('../partials/header'); %>
 </header>
 <main>
     <div class="mx-auto container">
-      <h1>Den Søde Tand</h1>
-      <p>Velkommen til vores hjemmeside</p>
-  </div>
+        <form method="post">
+            <div class="form-control">
+                <label class="input-group">
+                    <span>Username</span>
+                    <input type="text" name="username" id="username" placeholder="ostemad" class="input input-bordered" />
+                </label>
+            </div>
+            <div class="form-control">
+                <label class="input-group">
+                    <span>Password</span>
+                    <input type="password" name="password" id="password" placeholder="********" class="input input-bordered" />
+                </label>
+            </div>
+            <button type="submit" value="Submit" class="btn btn-primary py-10">Login</button>
+        </form>
+    </div>
 </main>
 <footer>
-  <%- include('../partials/footer'); %>
+    <%- include('../partials/footer'); %>
 </footer>
+
 </html>
