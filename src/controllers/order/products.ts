@@ -19,6 +19,10 @@ export const get: RequestHandler = async (req, res) => {
     });
     sum = 0;
     user_products.forEach((product) => {
+        console.log(product.product);
+        if(product.product === null) {
+            return;
+        }
         sum += product.quantity * product.product[0].price;
     });
     return res.render('pages/products', { User: session.user, products: products, quantity: quantity, sum: sum });

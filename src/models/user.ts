@@ -21,8 +21,7 @@ export class User {
     password: string
 
     // Cart
-    @ManyToOne(() => Cart_Product)
-    @JoinTable()
+    @OneToMany(() => Cart_Product, cart_product => cart_product.user)
     cart: Cart_Product[]
 }
 
@@ -41,6 +40,10 @@ export class Cart_Product {
     @ManyToOne(() => User)
     @JoinTable()
     user?: User
+
+    @ManyToOne(() => Order)
+    @JoinTable()
+    order?: Order
 }
 
 
@@ -54,8 +57,7 @@ export class Order {
     date: Date
 
     // Cart
-    @ManyToMany(() => Cart_Product)
-    @JoinTable()
+    @OneToMany(() => Cart_Product, cart_product => cart_product.order)
     order: Cart_Product[]
 
     @Column()

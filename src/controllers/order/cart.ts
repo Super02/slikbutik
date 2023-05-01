@@ -6,10 +6,12 @@ let quantity = 0;
 let sum = 0;
 
 export const get: RequestHandler = async (req, res) => {
-    if(!session.user){
+    const user = session.user;
+    if(!user){
         res.redirect('/login');
         return;
     }
-    let items = await db.getRepository(Cart_Product).find({ where: [{user: session.user }] , relations: ["product"] });
-    res.render('pages/cart', { User: session.user, quantity: quantity, sum: sum, items: items });
+    // Find all products in cart without getting RangeError: Maximum call stack size exceeded
+    const items = await db.getRepository(Cart_Product).find({ where: [{ user: user }], relations: ["product"] });
+    res.render('pages/cart', { User: user, quantity: quantity, sum: sum, items: items });
 };

@@ -1,6 +1,10 @@
 <tr>
-    <td><%= item.product[0].name %></td>
-    <td><%= item.product[0].price %> kr</td>
-    <td><%= item.quantity %></td>
-    <td><%= item.product[0].price * item.quantity %> kr</td>
+    <% if(item.product == null) { %>
+    <td>Produktet findes ikke længere</td>
+    <% } else { %>
+      <td><%= item.product[0].name %></td>
+      <td><%= item.product[0].price %> kr</td>
+      <td><%= item.quantity %></td>
+      <td><%= item.product[0].price * item.quantity %> kr</td>
+    <% } %>
   </tr>
