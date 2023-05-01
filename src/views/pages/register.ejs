@@ -3,13 +3,10 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <head>
-    <%- include('../partials/head', {profile_img: profile_img}); %>
+    <%- include('../partials/head', {User: User}); %>
 </head>
 
-<header>
-    <%- include('../partials/header'); %>
-</header>
-<main>
+<main class="flex flex-col min-h-screen grow">
     <div class="mx-auto container">
         <form method="post">
             <div class="form-control">

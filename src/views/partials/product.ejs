@@ -1,0 +1,12 @@
+<div class="card card-compact w-96 bg-base-100 shadow-xl hover:bg-base-200">
+    <figure><img src="<%= product.img %>" alt="<%= product.name %>" /></figure>
+    <div class="card-body">
+        <h2 class="card-title"><%= product.name %>
+        <div class="badge badge-neutral-focus"><%= product.price %> kr</div>
+    </h2>
+      <p><%= product.description %></p>
+      <div class="card-actions justify-end">
+        <a class="btn btn-primary" href="/buy/<%= product.id %>">Tilføj til kurv</a>
+      </div>
+    </div>
+</div>

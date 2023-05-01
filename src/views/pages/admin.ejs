@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/style.css">
+
+<main class="flex flex-col min-h-screen grow">
+    <%- include('../partials/head', {User: User}); %>
+        <div class="mx-auto container">
+            <!-- The button to open modal -->
+            <label for="my-modal" class="btn btn-info">Create new product</label>
+
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my-modal" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg">Add new product</h3>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Name</span>
+                                </label>
+                                <input type="text" name="name" placeholder="Name" class="input input-bordered" />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Description</span>
+                                </label>
+                                <input type="text" name="description" placeholder="Description" class="input input-bordered" />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Price</span>
+                                </label>
+                                <input type="text" name="price" placeholder="Price" class="input input-bordered" />
+                            </div>
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Image URL</span>
+                                </label>
+                                <input type="text" name="image_url" placeholder="Image URL" class="input input-bordered" />
+                            </div>
+                            <div class="form-control mt-6">
+                                <button class="btn btn-primary">Add product</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-action">
+                        <label for="my-modal" class="btn">Close!</label>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Pris</th>
+                            <th>Dato</th>
+                            <th>Brugernavn</th>
+                            <th>Se bestilling</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(function(order) { %>
+                            <tr>
+                                <td><%= order.total %></td>
+                                <td><%= order.date %> kr</td>
+                                <td><%= order.user.username %></td>
+                                <td><a class="btn btn-primary" href="/showorder/<%=order.id%>">Vis</a></td>
+                              </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/style.css">
+
+<main class="flex flex-col min-h-screen grow">
+    <%- include('../partials/head', {User: User}); %>
+        <div class="mx-auto container">
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Navn</th>
+                            <th>Pris pr. enhed</th>
+                            <th>Mængde</th>
+                            <th>Pris</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% order.forEach(function(item) { %>
+                            <%- include('../partials/cart', {item: item}); %>
+                                <% }); %>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Total mængde</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <%= quantity %>
+                        </td>
+                        <td>
+                            <%= sum %> kr
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</html
