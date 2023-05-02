@@ -7,7 +7,7 @@ var session = require('express-session');
 export const post: RequestHandler = async (req, res) => {
     let user = await db.getRepository(User).findOne({ where: [{username: req.body.username }] }); // Check if username already exists
     if (user) {
-        res.render('pages/register', { error: "Username already taken" });
+        res.render('pages/register', { error: "Brugernavn allerede taget" });
     } else {
         const hashedPassword = await argon2.hash(req.body.password); // Hash password with argon2 and save it in the database
         const newUser = new User(); // Create new user

@@ -7,16 +7,17 @@
   </div>
   <% if (session.user == null) { %>
     <div class="navbar-end">
-      <a class="btn btn-ghost" href="/register">Register</a>
+      <a class="btn btn-ghost" href="/register">Opret</a>
       <a class="btn btn-ghost" href="/login">Login</a>
     </div>
   <% } else { %>
     <div class="navbar-center">
-      <a class="btn btn-ghost" href="/">Home</a>
-      <a class="btn btn-ghost" href="/products">Products</a>
+      <a class="btn btn-ghost" href="/">Hjem</a>
+      <a class="btn btn-ghost" href="/products">Produkter</a>
       <% if (session.user.permission == 1) { %>
         <a class="btn btn-ghost" href="/admin">Admin</a>
       <% } %>
+      <a class="btn btn-ghost" href="/about">Om os</a>
     </div>
     <div class="navbar-end">
       <div class="dropdown dropdown-end">
@@ -28,10 +29,10 @@
         </label>
         <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
           <div class="card-body">
-            <span class="font-bold text-lg"><%= session.quantity %> Items</span>
+            <span class="font-bold text-lg"><%= session.quantity %> varer</span>
             <span class="text-info">Subtotal: <%= session.sum %> kr</span>
             <div class="card-actions">
-              <a class="btn btn-primary btn-block" href="/cart">View cart</a>
+              <a class="btn btn-primary btn-block" href="/cart">Se kurv</a>
             </div>
           </div>
         </div>
@@ -48,13 +49,13 @@
               <div class="stat-title">Balance</div>
               <div class="stat-value"><%= session.user.balance %> kr</div>
               <div class="stat-actions">
-                <a class="btn btn-sm btn-success" href="/getmoney/1000">Add funds</a>
+                <a class="btn btn-sm btn-success" href="/getmoney/1000">Tilføj penge</a>
               </div>
             </div>
             
           </div>
-          <li><a href="settings">Settings</a></li>
-          <li><a href="logout">Logout</a></li>
+          <li><a href="settings">Indstillinger</a></li>
+          <li><a href="logout">Log ud</a></li>
         </ul>
       </div>
     </div>

@@ -11,6 +11,6 @@ export const get: RequestHandler = async (req, res) => {
         session.user = user; // Set the session user so we can use it in other controllers
         res.redirect('/products'); // Redirect to products page
     } else {
-        res.render('pages/settings', { error: "Username does not exist" });
+        res.render('pages/settings', { error: "Bruger eksisterer ikke" });
     }
 };

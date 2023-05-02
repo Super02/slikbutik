@@ -39,7 +39,7 @@ export const post: RequestHandler = async (req, res) => {
             await db.getRepository(Product).delete({ id: product.id }); // Delete the product
             res.redirect('/products'); // Redirect to the products page
         } else {
-            res.render('pages/index', { error: "Unknown action" });
+            res.render('pages/index', { error: "Fejl! Ukendt handling udført" });
         }
     } else {
         res.redirect('/');

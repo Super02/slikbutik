@@ -15,9 +15,9 @@ export const post: RequestHandler = async (req, res) => {
             session.user = user; // Set the session user so we can use it in other controllers
             res.redirect('/products'); // Redirect to products page
         } else {
-            res.render('pages/login', { error: "Incorrect password" });
+            res.render('pages/login', { error: "Forkert kode" });
         }
     } else {
-        res.render('pages/login', { error: "Username does not exist" });
+        res.render('pages/login', { error: "Bruger eksisterer ikke" });
     }
 };

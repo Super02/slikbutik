@@ -9,5 +9,5 @@ export const get: RequestHandler = async (req, res) => {
         await db.getRepository(User).update({ id: user.id }, { balance: user.balance + parseInt(req.params.money) }); // Update user balance with 1000 new kr
     }
     session.user.balance = user.balance + parseInt(req.params.money);
-    res.render('pages/index', {'success': 'Successfully added ' + req.params.money + ' kr to your account'});
+    res.render('pages/index', {'success': req.params.money + ' kr er blevet tilføjet til din bruger'});
 };

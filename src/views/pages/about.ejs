@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/styles/style.css">
+
+<main class="flex flex-col min-h-screen grow">
+    <%- include('../partials/head'); %>
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col lg:flex-row">
+                <div>
+                    <h1 class="text-5xl font-bold">Den Søde tand!</h1>
+                    <p class="py-6">Den søde tand er en hjemmeside som har til formål at hjælpe alle der er lækkersultne
+                        med at bestille deres slik på en simpel og effektiv måde.</p>
+                    <div class="divider">Udvalg</div>
+                    <p class="py-6">Vi har det største udvalg blandt konkurenter. Og vores hjemmeside kan tilgås både på
+                        computer og mobil.</p>
+                    <div class="flex flex-row justify-between">
+                        <div class="card w-96 bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <p>Jeg har aldrig været mere begejstret da jeg modtog HELE Utterslev mose i min
+                                    baghave.</p>
+                                <div class="rating">
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card w-96 bg-base-100 shadow-xl">
+                            <div class="card-body">
+                                <p>Jeg har bestilt for over 20.000 kr denne måned! Det bedste slik på markedet!
+                                </p>
+                                <div class="rating">
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400"
+                                        checked />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider">Kontakt</div>
+                    <p class="py-6">Du er velkommen til at kontake Den Søde Tand på tlf: +45 00000000. Eller på mail: <a class="link text-blue-500" href = "mailto: kontakt@densodetand.dk">kontakt@densodetand.dk</a></p>
+                    <div class="divider">Priser</div>
+                    <p class="py-6">Vi har de bedste priser på markedet. Vi har prismatch på alle vores produkter. Hvis du finder et produkt billigere et andet sted, matcher vi prisen.</p>
+            </div>
+        </div>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</html>

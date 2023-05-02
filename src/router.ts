@@ -31,6 +31,9 @@ export default (app: Application) => {
     app.post('/settings', require('./controllers/user/settings').post);
     app.get('/getmoney/:money', require('./controllers/user/getmoney').get);
 
+    // Other
+    app.get('/about', require('./controllers/other/about').get);
+
 
     // 404
     app.use((req, res, next) => {

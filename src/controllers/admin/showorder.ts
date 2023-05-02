@@ -18,10 +18,10 @@ export const get: RequestHandler = async (req, res) => {
             const total = order.total; // Set the total price
             res.render('pages/showorder', { order: cartProducts, quantity: quantity, total: total });
         } else {
-            res.render('pages/index', { error: "Unauthorized" });
+            res.render('pages/index', { error: "Adgang nægtet" });
         }
     } else {
-        res.render('pages/index', { error: "Unauthorized" });
+        res.render('pages/index', { error: "Adgang nægtet" });
     }
 };
 
