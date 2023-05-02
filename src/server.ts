@@ -2,7 +2,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-console.log(process.env.DATABASE_URL);
 import express, { Express, Request, Response } from 'express';
 import "reflect-metadata"
 import router from './router';
@@ -15,6 +14,7 @@ app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({
     extended: true
   })); 
+
 app.use(express.static("src/public"));
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(user);
 
-router(app);
+router(app); // Register all routes
 
 app.listen(port, () => {
     console.log(`Running at http://localhost:${port}`);

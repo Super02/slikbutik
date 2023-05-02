@@ -17,7 +17,6 @@ export default (app: Application) => {
     app.get('/cart', require('./controllers/order/cart').get);
     app.get('/clearcart', require('./controllers/order/clearcart').get);
     app.get('/order', require('./controllers/order/order').get);
-    app.get('/deleteall', require('./controllers/order/deleteall').get);
 
     // Admin routes
     app.get('/admin', require('./controllers/admin/admin').get);

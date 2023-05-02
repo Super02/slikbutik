@@ -22,7 +22,7 @@ export class User {
 }
 
 @Entity()
-export class Cart_Product {
+export class cartProduct {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -51,8 +51,8 @@ export class Order {
     date: Date
 
     // Cart
-    @OneToMany(() => Cart_Product, cart_product => cart_product.order)
-    order: Cart_Product[]
+    @OneToMany(() => cartProduct, cartProduct => cartProduct.order)
+    order: cartProduct[]
 
     @Column()
     total: number

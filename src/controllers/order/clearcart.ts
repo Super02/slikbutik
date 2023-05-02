@@ -1,14 +1,14 @@
 import type { RequestHandler } from 'express';
-import { Cart_Product, User } from '../../models/user';
+import { cartProduct, User } from '../../models/user';
 import { db } from '../../database';
 var session = require('express-session');
 
 export const get: RequestHandler = async (req, res) => {
-    const user = await db.getRepository(User).findOne({ where: {id: session.user.id } });
+    const user = await db.getRepository(User).findOne({ where: {id: session.user.id } }); // Get the user
     if (user) {
-        const items = await db.getRepository(Cart_Product).find({ where: [{ user: user }] });
+        const items = await db.getRepository(cartProduct).find({ where: [{ user: user }] }); // Get all items in cart
         items.forEach(async (item) => {
-            await db.getRepository(Cart_Product).delete({ id: item.id });
+            await db.getRepository(cartProduct).delete({ id: item.id }); // Delete all items in cart
         });
         session.quantity = 0;
         session.sum = 0;
