@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <head>
-    <%- include('../partials/head', {User: User}); %>
+    <%- include('../partials/head'); %>
 </head>
 
 <main class="flex flex-col min-h-screen grow">
@@ -13,11 +13,13 @@
         <div class="form-control">
             <div class="input-group">
               <input type="text" name="profile_img" placeholder="URL" class="input input-bordered" />
-              <button class="btn btn-square" type="submit" value="Submit">Save</button>
+              <button class="btn btn-square" type="submit" value="Submit" name="change_pfp">Save</button>
             </div>
           </div>
         </form>
-
+        <form method="post" class="py-5">
+            <button class="btn btn-error" type="submit" value="Submit" name="delete">Delete user</button>
+        </form>
     </div>
 </main>
 <footer>

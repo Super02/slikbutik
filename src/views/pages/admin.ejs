@@ -3,15 +3,30 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <main class="flex flex-col min-h-screen grow">
-    <%- include('../partials/head', {User: User}); %>
+    <%- include('../partials/head'); %>
         <div class="mx-auto container">
             <!-- The button to open modal -->
-            <label for="my-modal" class="btn btn-info">Create new product</label>
+            <label for="new_product" class="btn btn-info">Create new product</label>
+            <div class="form-control py-2">
+                <div class="input-group">
+                    <form method="post">
+                        <select class="select select-bordered" name="delete_product">
+                            <option disabled selected>Select a product</option>
+                            <% products.forEach(function(product) { %>
+                                <option type="text" value="<%= product.id %>">
+                                    <%= product.name %>
+                                </option>
+                                <% }); %>
+                        </select>
+                        <button class="btn btn-error" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
 
             <!-- Put this part before </body> tag -->
-            <input type="checkbox" id="my-modal" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box">
+            <input type="checkbox" id="new_product" class="modal-toggle" />
+            <label for="new_product" class="modal cursor-pointer">
+                <label class="modal-box relative" for="">
                     <h3 class="font-bold text-lg">Add new product</h3>
                     <div class="card-body">
                         <form method="post">
@@ -25,7 +40,8 @@
                                 <label class="label">
                                     <span class="label-text">Description</span>
                                 </label>
-                                <input type="text" name="description" placeholder="Description" class="input input-bordered" />
+                                <textarea type="text" name="description" placeholder="Description"
+                                    class="textarea textarea-bordered"></textarea>
                             </div>
                             <div class="form-control">
                                 <label class="label">
@@ -37,7 +53,8 @@
                                 <label class="label">
                                     <span class="label-text">Image URL</span>
                                 </label>
-                                <input type="text" name="image_url" placeholder="Image URL" class="input input-bordered" />
+                                <input type="text" name="image_url" placeholder="Image URL"
+                                    class="input input-bordered" />
                             </div>
                             <div class="form-control mt-6">
                                 <button class="btn btn-primary">Add product</button>
@@ -45,33 +62,79 @@
                         </form>
                     </div>
                     <div class="modal-action">
-                        <label for="my-modal" class="btn">Close!</label>
+                        <label for="new_product" class="btn">Close!</label>
                     </div>
-                </div>
-            </div>
+                </label>
+            </label>
+            <h1 class="text-2xl font-bold py-2">Users</h1>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th>Pris</th>
-                            <th>Dato</th>
-                            <th>Brugernavn</th>
-                            <th>Se bestilling</th>
+                            <th>Brugenavn</th>
+                            <th>Password</th>
+                            <th>Balance</th>
+                            <th>Adgangsniveau</th>
+                            <th>Slet bruger</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% orders.forEach(function(order) { %>
+                        <% users.forEach(function(user) { %>
                             <tr>
-                                <td><%= order.total %></td>
-                                <td><%= order.date %> kr</td>
-                                <td><%= order.user.username %></td>
-                                <td><a class="btn btn-primary" href="/showorder/<%=order.id%>">Vis</a></td>
-                              </tr>
+                                <td>
+                                    <%= user.username %>
+                                </td>
+                                <td>
+                                    <%= user.password %>
+                                </td>
+                                <td>
+                                    <%= user.balance %>
+                                </td>
+                                <td>
+                                    <%= user.permission %>
+                                </td>
+                                <form method="post">
+                                    <input type="hidden" name="user_id" value="<%= user.id %>">
+                                    <td><button type="submit" class="btn btn-error">Slet</button></td>
+                                </form>
+                            </tr>
                             <% }); %>
                     </tbody>
                 </table>
             </div>
+            <% if(orders.length> 0) { %>
+                <h1 class="text-2xl font-bold">Orders</h1>
+                <div class="overflow-x-auto py-2">
+                    <table class="table w-full">
+                        <!-- head -->
+                        <thead>
+                            <tr>
+                                <th>Pris</th>
+                                <th>Dato</th>
+                                <th>Brugernavn</th>
+                                <th>Se bestilling</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% orders.forEach(function(order) { %>
+                                <tr>
+                                    <td>
+                                        <%= order.total %> kr
+                                    </td>
+                                    <td>
+                                        <%= order.date %>
+                                    </td>
+                                    <td>
+                                        <%= order.user.username %>
+                                    </td>
+                                    <td><a class="btn btn-primary" href="/showorder/<%=order.id%>">Vis</a></td>
+                                </tr>
+                                <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
 </main>
 <footer>
     <%- include('../partials/footer'); %>

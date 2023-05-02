@@ -21,12 +21,17 @@ export default (app: Application) => {
 
     // Admin routes
     app.get('/admin', require('./controllers/admin/admin').get);
-    app.get('/setlevel/:id', require('./controllers/admin/setlevel').get);
+    app.post('/admin', require('./controllers/admin/admin').post);
+    app.get('/setlevel/:level', require('./controllers/admin/setlevel').get);
     app.get('/showorder/:id', require('./controllers/admin/showorder').get);
+    app.post('/showorder/:id', require('./controllers/admin/showorder').post);
+
 
     // User
     app.get('/settings', require('./controllers/user/settings').get);
     app.post('/settings', require('./controllers/user/settings').post);
+    app.get('/getmoney/:money', require('./controllers/user/getmoney').get);
+
 
     // 404
     app.use((req, res, next) => {

@@ -19,10 +19,6 @@ export class User {
 
     @Column()
     password: string
-
-    // Cart
-    @OneToMany(() => Cart_Product, cart_product => cart_product.user)
-    cart: Cart_Product[]
 }
 
 @Entity()
@@ -38,11 +34,9 @@ export class Cart_Product {
     product: Product[]
 
     @ManyToOne(() => User)
-    @JoinTable()
     user?: User
 
     @ManyToOne(() => Order)
-    @JoinTable()
     order?: Order
 }
 
@@ -64,7 +58,6 @@ export class Order {
     total: number
 
     @ManyToOne(() => User)
-    @JoinTable()
     user: User
 }
 
@@ -84,7 +77,4 @@ export class Product {
 
     @Column()
     price: number
-
-    @ManyToOne(() => Order)
-    orders: Order[]
 }

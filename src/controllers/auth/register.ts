@@ -3,13 +3,11 @@ import { User } from '../../models/user';
 import { db } from '../../database';
 import * as argon2 from "argon2";
 var session = require('express-session');
-let quantity = 0;
-let sum = 0;
 
 export const post: RequestHandler = async (req, res) => {
     let user = await db.getRepository(User).findOne({ where: [{username: req.body.username }] });
     if (user) {
-        res.render('pages/register', { error: "Username already exists" , User: session.user, quantity: quantity, sum: sum});
+        res.render('pages/register', { error: "Username already exists" });
     } else {
         const hashedPassword = await argon2.hash(req.body.password);
         const newUser = new User();
@@ -22,5 +20,5 @@ export const post: RequestHandler = async (req, res) => {
 };
 
 export const get: RequestHandler = async (req, res) => {
-    res.render('pages/register', { User: session.user, quantity: quantity, sum: sum });
+    res.render('pages/register');
 };

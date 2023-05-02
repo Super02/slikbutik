@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <main class="flex flex-col min-h-screen grow">
-    <%- include('../partials/head', {User: User}); %>
+    <%- include('../partials/head'); %>
         <div class="mx-auto container">
             <div class="overflow-x-auto">
                 <table class="table w-full">
@@ -33,10 +33,10 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <%= quantity %>
+                            <%= session.quantity %>
                         </td>
                         <td>
-                            <%= sum %> kr
+                            <%= session.sum %> kr
                         </td>
                     </tr>
                 </table>

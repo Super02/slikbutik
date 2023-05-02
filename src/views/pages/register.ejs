@@ -3,25 +3,25 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <head>
-    <%- include('../partials/head', {User: User}); %>
+    <%- include('../partials/head'); %>
 </head>
 
 <main class="flex flex-col min-h-screen grow">
     <div class="mx-auto container">
         <form method="post">
-            <div class="form-control">
+            <div class="form-control pb-2">
                 <label class="input-group">
                     <span>Username</span>
                     <input type="text" name="username" id="username" placeholder="ostemad" class="input input-bordered" />
                 </label>
             </div>
-            <div class="form-control">
+            <div class="form-control pb-2">
                 <label class="input-group">
                     <span>Password</span>
                     <input type="password" name="password" id="password" placeholder="********" class="input input-bordered" />
                 </label>
             </div>
-            <button type="submit" value="Submit" class="btn btn-primary py-10">Register</button>
+            <button type="submit" value="Submit" class="btn btn-primary">Register</button>
         </form>
     </div>
 </main>

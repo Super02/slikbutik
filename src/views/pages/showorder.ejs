@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/styles/style.css">
 
 <main class="flex flex-col min-h-screen grow">
-    <%- include('../partials/head', {User: User}); %>
+    <%- include('../partials/head'); %>
         <div class="mx-auto container">
             <div class="overflow-x-auto">
                 <table class="table w-full">
@@ -36,12 +36,16 @@
                             <%= quantity %>
                         </td>
                         <td>
-                            <%= sum %> kr
+                            <%= total %> kr
                         </td>
                     </tr>
                 </table>
             </div>
+            <form method="post">
+            <button type="submit" value="Submit" class="btn btn-primary py-2">Slet ordre</button>
+        </form>
         </div>
+        
 </main>
 <footer>
     <%- include('../partials/footer'); %>

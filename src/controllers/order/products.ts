@@ -6,10 +6,7 @@ let quantity = 0;
 let sum = 0;
 
 export const get: RequestHandler = async (req, res) => {
-    if (!session.user) {
-        res.redirect('/login');
-        return;
-    }    // Get the products
+    // Get the products
     const products = await db.getRepository(Product).find();
     const user_products = await db.getRepository(Cart_Product).find({ where: [{ user: session.user }], relations: ["product"] });
     // Get total quantity for user
@@ -19,11 +16,12 @@ export const get: RequestHandler = async (req, res) => {
     });
     sum = 0;
     user_products.forEach((product) => {
-        console.log(product.product);
         if(product.product === null) {
             return;
         }
         sum += product.quantity * product.product[0].price;
     });
-    return res.render('pages/products', { User: session.user, products: products, quantity: quantity, sum: sum });
+    session.quantity = quantity;
+    session.sum = sum;
+    return res.render('pages/products', { products: products });
 };
