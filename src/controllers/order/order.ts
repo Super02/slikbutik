@@ -7,6 +7,9 @@ export const get: RequestHandler = async (req, res) => {
     let user = await db.getRepository(User).findOne({ where: [{ id: session.user.id }] }); // Get the user
     const cartProducts = await db.getRepository(cartProduct).find({ where: [{ user: session.user }] }); // Get all cartProducts
     if (user) {
+        if(user.balance < session.sum) {
+            return res.render('pages/index', { error: "Du har ikke nok penge til at købe dette!" });
+        }
         const newOrder = new Order();
         newOrder.user = user;
         newOrder.order = cartProducts;
