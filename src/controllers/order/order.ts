@@ -10,6 +10,7 @@ export const get: RequestHandler = async (req, res) => {
         if(user.balance < session.sum) {
             return res.render('pages/index', { error: "Du har ikke nok penge til at købe dette!" });
         }
+        user.balance -= session.sum;
         const newOrder = new Order();
         newOrder.user = user;
         newOrder.order = cartProducts;
